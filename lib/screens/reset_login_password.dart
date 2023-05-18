@@ -1,34 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:firebase_authentication/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class EmailPasswordSignUp extends StatefulWidget {
-  const EmailPasswordSignUp({super.key});
-  static String routeName = '/signup-email-password';
+class ResetPasswordScreen extends StatefulWidget {
+  static String routeName = '/reset-login-password';
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmailPasswordSignUp> createState() => _EmailPasswordSignUpState();
+  _ResetPasswordScreenState createState() => _ResetPasswordScreenState();
 }
 
-class _EmailPasswordSignUpState extends State<EmailPasswordSignUp> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
     // TODO: implement dispose
     emailController.dispose();
-    passwordController.dispose();
     super.dispose();
   }
 
-  void signUpUser() async {
-    context.read<FirebaseAuthMethods>().signUpWithEmail(
-          email: emailController.text.toString(),
-          password: passwordController.text.toString(),
-          context: context,
-        );
+  void resetPassword() {
+    if (context.mounted) {
+      FirebaseAuthMethods(FirebaseAuth.instance).forgotLoginPassword(
+        email: emailController.text,
+        context: context,
+      );
+    }
   }
 
   @override
@@ -38,7 +37,7 @@ class _EmailPasswordSignUpState extends State<EmailPasswordSignUp> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Sign Up',
+            "Reset Password",
             style: TextStyle(fontSize: 30),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.08),
@@ -50,23 +49,9 @@ class _EmailPasswordSignUpState extends State<EmailPasswordSignUp> {
               hintText: 'Enter your email',
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: CustomTextField(
-              keyboardType: TextInputType.text,
-              controller: passwordController,
-              hintText: 'Enter your password',
-            ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          // emailController.text.isEmpty || passwordController.text.isEmpty ? TextButton(onPressed: () {}, child: Text('Yes')) : TextButton(onPressed: signUpUser, child: const Text('Sign Up')),
+          const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: signUpUser,
+            onPressed: resetPassword,
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.blue),
               textStyle: MaterialStateProperty.all(
@@ -77,7 +62,7 @@ class _EmailPasswordSignUpState extends State<EmailPasswordSignUp> {
               ),
             ),
             child: const Text(
-              "Sign Up",
+              "Send Request",
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),

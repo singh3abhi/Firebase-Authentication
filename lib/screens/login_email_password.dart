@@ -1,5 +1,8 @@
+import 'package:firebase_authentication/screens/reset_login_password.dart';
+import 'package:firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:firebase_authentication/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EmailPasswordLogin extends StatefulWidget {
   static String routeName = '/login-email-password';
@@ -12,6 +15,22 @@ class EmailPasswordLogin extends StatefulWidget {
 class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void loginUser() {
+    context.read<FirebaseAuthMethods>().loginWithEmail(
+      email: emailController.text,
+      password: passwordController.text,
+      context: context,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +60,21 @@ class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
               hintText: 'Enter your password',
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, ResetPasswordScreen.routeName);
+                },
+                child: const Text('Forgot Password'),
+              )
+            ],
+          ),
+          const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: loginUser,
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.blue),
               textStyle: MaterialStateProperty.all(

@@ -1,6 +1,8 @@
+import 'package:firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:firebase_authentication/widgets/custom_button.dart';
 import 'package:firebase_authentication/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PhoneScreen extends StatefulWidget {
   static String routeName = '/phone';
@@ -19,6 +21,13 @@ class _PhoneScreenState extends State<PhoneScreen> {
     phoneController.dispose();
   }
 
+  void phoneSignIn() {
+    context.read<FirebaseAuthMethods>().phoneSignIn(
+          context: context,
+          phoneNumber: phoneController.text,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +44,9 @@ class _PhoneScreenState extends State<PhoneScreen> {
             controller: phoneController,
             hintText: 'Enter phone number',
           ),
-          const SizedBox(height: 20),
           CustomButton(
-            onTap: () {},
-            text: 'OK',
+            onTap: phoneSignIn,
+            text: 'Send OTP',
           ),
         ],
       ),

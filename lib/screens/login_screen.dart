@@ -1,11 +1,14 @@
 import 'package:firebase_authentication/screens/login_email_password.dart';
 import 'package:firebase_authentication/screens/phone_screen.dart';
 import 'package:firebase_authentication/screens/signup_email_password_screen.dart';
+import 'package:firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:firebase_authentication/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+  static String routeName = '/login_screen';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -38,7 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
               text: 'Phone Sign In',
             ),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                context.read<FirebaseAuthMethods>().signInWithGoogle(context);
+              },
               text: 'Google Sign In',
             ),
             CustomButton(
@@ -46,7 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
               text: 'Facebook Sign In',
             ),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                context.read<FirebaseAuthMethods>().signInAnonymously(context);
+              },
               text: 'Anonymous Sign In',
             ),
           ],
