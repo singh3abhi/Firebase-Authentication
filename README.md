@@ -1,16 +1,41 @@
-# firebase_authentication
+# Firebase Authentication App
 
-A new Flutter project.
+I created this app to learn about Firebase and its implementation in flutter apps.  
+With the help of firebase we can easily implement different ways of Authentication
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/mohak1283)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Show some :heart: and star the repo to support the project.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Note
+This repository is still under development and I will continue to add more features to it.
+
+## Features
+
+ * Sign In Methods
+   * Email/Password Sign Up and Login
+   * Phone Sign In
+   * Google Sign In
+   * Facebook Sign In
+   * Anonymous Sign In 
+   
+ * Extra Features
+   * Sign Out 
+   * Delete Account 
+   * Verify Email
+   * Shows Sign In Details After Sign In
+ 
+ 
+ 
+## Screenshots
+
+Screen 1               |  Screen 2                          |  Screen 3       |  Screen 4
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](screenshots/1.png)|![](screenshots/2.png)|![](screenshots/3.png)|![](screenshots/4.png)
+
+Screen 5                   |              Screen 6               |  Screen 7     |  Screen 8  
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](screenshots/5.png)|![](screenshots/6.png)|![](screenshots/7.png)|![](screenshots/8.png)
+
